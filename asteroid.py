@@ -11,7 +11,8 @@ class Asteroid(CircleShape):
     def split(self):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
-            print("asteroid eliminated!")
+            #print("asteroid eliminated!")
+            pass
         else:
             random_angle = random.uniform(20,50)
             new_vector_1 = pygame.Vector2(self.velocity).rotate(random_angle)

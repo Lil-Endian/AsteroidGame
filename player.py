@@ -6,6 +6,8 @@ from constants import *
 class Player(CircleShape):
 
     timer = 0
+    recovering = False
+    invuln_timer = 0
 
     def __init__(self, x, y):
         super().__init__( x, y, PLAYER_RADIUS)
@@ -16,6 +18,11 @@ class Player(CircleShape):
             new_shot = Shot(self.position.x, self.position.y)
             new_shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
             self.timer = PLAYER_SHOT_COOLDOWN
+
+    def respawn(self):
+        self.position = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        self.recovering = True
+        self.invuln_timer = RESPAWN_INVULN_TIME
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
